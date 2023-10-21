@@ -1,0 +1,45 @@
+.container {
+  max-width: 1300px;
+  padding: 0 1.8rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 15rem;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 6rem;
+  margin-top: 2rem;
+}
+
+input,
+textarea {
+  color: #252525;
+  font-size: 1.1rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #252525;
+  &:focus {
+    outline: none;
+  }
+}
+
+input[type="password"] {
+  letter-spacing: 0.3em;
+  text-align: center;
+}
+
+.mat-mdc-card-header {
+  justify-content: center;
+}
+
+mat-card {
+  max-width: 18rem;
+}
