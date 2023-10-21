@@ -7,15 +7,21 @@ const strong = ['#59c420', '#59c420', '#59c420'];
 const medium = ['#ffe900', '#ffe900', '#c2c2c2'];
 const easy = ['red', '#c2c2c2', '#c2c2c2'];
 const epmty = ['#c2c2c2', '#c2c2c2', '#c2c2c2'];
-const short = ['red', 'red', 'red'];
+const invalid = ['red', 'red', 'red'];
+const cyrillic = new RegExp(/[а-яА-Я]/);
 
 export function PasswordValidate(control: FormControl): { [key: string]: any } | null {
   let lengthCheck: boolean = control.value.length > 7;
   let symbolCheck = symbols.test(control.value);
   let numbersCheck = numbers.test(control.value);
   let letersCheck = leters.test(control.value);
+  let cyrilliCheck = cyrillic.test(control.value);
 
   try {
+    if (cyrilliCheck) {
+      return { strengthArray: invalid, message: 'Please, use only latin letters!' };
+    }
+
     if (symbolCheck && numbersCheck && letersCheck && lengthCheck) {
       return { strengthArray: strong, require: true, message: 'Your password really strong!' };
     }
@@ -44,7 +50,7 @@ export function PasswordValidate(control: FormControl): { [key: string]: any } |
       return { strengthArray: epmty, message: 'Please, add password!' }
     }
     else if (!lengthCheck) {
-      return { strengthArray: short, message: 'Your password must have at least 8 characters!' }
+      return { strengthArray: invalid, message: 'Your password must have at least 8 characters!' }
     }
 
     return null;
